@@ -1294,13 +1294,17 @@ if($dialog.ShowDialog() -eq "OK"){
     $dialog.FileName + " ‚ª‘I‘ğ‚³‚ê‚Ü‚µ‚½B"
 }
 
+$resultfile = "result.txt"
 $nameArr = Get-Content $dialog.FileName | Select-String "‘Iè–¼ : "
 
 for($i=0; $i -lt $nameArr.Count; $i++){
     $namestr = $nameArr[$i]
     $name = getPlayerName($namestr)
     $kananame = getKanaName($name)
+    
     Write-Host "No[$i] : $name  $kananame"
+    Write-Output "No[$i] : $name  $kananame" | Add-Content $resultfile -Encoding Default
+
 }
 
 
